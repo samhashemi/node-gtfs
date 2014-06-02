@@ -66,7 +66,16 @@ module.exports = function routes(app){
       res.send( data || {error: 'No shapes for agency/route combination.'});
     });
   });
-  
+
+  //TransitMix Coordinates
+  app.get('/api/coordinates/:agency/:route_id', function(req, res){
+    var agency_key = req.params.agency
+      , route_id = req.params.route_id
+    gtfs.getCoordinatesByRoute(agency_key, route_id, function(e, data){
+      res.send( data || {error: 'No shapes for agency/route combination.'});
+    });
+  });
+
   //Stoplist
   app.get('/api/stops/:agency/:route_id/:direction_id', function(req, res){
     var agency_key = req.params.agency
