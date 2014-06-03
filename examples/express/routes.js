@@ -51,7 +51,7 @@ module.exports = function routes(app){
       }
 
       async.map(agencies, addRoutes, function(err, results) {
-        results = cleanup(results)
+        cleanup(results);
         res.send( results || {error: 'No agencies within default radius'} );
       });
     });
@@ -60,15 +60,17 @@ module.exports = function routes(app){
   // Rough cleanup to match TransitMix until we figure out more about how we
   // want to structure this.
   function cleanup(agencies) {
-    agencies.forEach(agency) {
+    agencies.forEach(function(agency) {
       agency.id = agency.agency_key;
       agency.name = agency.agency_name;
 
-      agency.lines.forEach(function(line) {
-        line.id = route_id;
-        line.name = route_short_name + ' ' + route_long_name;
+      agency.lines = agency.lines.map(function(line) {
+        line = line.toJSON();
+        line.id = line.route_id;
+        line.name = line.route_short_name + ' ' + line.route_long_name;
+        return line;
       });
-    }
+    });
   }
 
   // Coordinates
