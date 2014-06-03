@@ -2,6 +2,12 @@ var gtfs = require('../../');
 var async = require('async');
 
 module.exports = function routes(app){
+  // Enable CORS
+  app.all('*', function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "X-Requested-With");
+    next();
+   });
   
   //AgencyList
   app.get('/api/agencies', function(req, res){
