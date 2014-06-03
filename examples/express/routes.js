@@ -33,7 +33,8 @@ module.exports = function routes(app){
     });
   });
 
-  //Transitmix Agencies + Routes (to avoid HTTP calls)
+  // Transitmix
+  // Agencies + Routes (to avoid HTTP calls) + parsing
   app.get('/api/agenciesNearbyWithRoutes/:lat/:lon', function(req, res){
     var lat = req.params.lat
       , lon = req.params.lon;
@@ -44,14 +45,38 @@ module.exports = function routes(app){
       var addRoutes = function(agency, callback) {
         gtfs.getRoutesByAgency(agency.agency_key, function(e, data) {
           var combined = agency.toJSON();
-          combined.routes = data;
+          combined.lines = data;
           callback(null, combined);
         });
       }
 
       async.map(agencies, addRoutes, function(err, results) {
+        results = cleanup(results)
         res.send( results || {error: 'No agencies within default radius'} );
       });
+    });
+  });
+
+  // Rough cleanup to match TransitMix until we figure out more about how we
+  // want to structure this.
+  function cleanup(agencies) {
+    agencies.forEach(agency) {
+      agency.id = agency.agency_key;
+      agency.name = agency.agency_name;
+
+      agency.lines.forEach(function(line) {
+        line.id = route_id;
+        line.name = route_short_name + ' ' + route_long_name;
+      });
+    }
+  }
+
+  // Coordinates
+  app.get('/api/coordinates/:agency/:route_id', function(req, res){
+    var agency_key = req.params.agency
+      , route_id = req.params.route_id
+    gtfs.getCoordinatesByRoute(agency_key, route_id, function(e, data){
+      res.send( data || {error: 'No shapes for agency/route combination.'});
     });
   });
 
@@ -96,14 +121,7 @@ module.exports = function routes(app){
     });
   });
 
-  //TransitMix Coordinates
-  app.get('/api/coordinates/:agency/:route_id', function(req, res){
-    var agency_key = req.params.agency
-      , route_id = req.params.route_id
-    gtfs.getCoordinatesByRoute(agency_key, route_id, function(e, data){
-      res.send( data || {error: 'No shapes for agency/route combination.'});
-    });
-  });
+
 
   //Stoplist
   app.get('/api/stops/:agency/:route_id/:direction_id', function(req, res){
