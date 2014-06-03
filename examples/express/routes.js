@@ -1,4 +1,5 @@
 var gtfs = require('../../');
+var async = require('async');
 
 module.exports = function routes(app){
   
@@ -23,6 +24,28 @@ module.exports = function routes(app){
       , lon = req.params.lon;
     gtfs.getAgenciesByDistance(lat, lon, function(e, data){
       res.send( data || {error: 'No agencies within default radius'});
+    });
+  });
+
+  //Transitmix Agencies + Routes (to avoid HTTP calls)
+  app.get('/api/agenciesNearbyWithRoutes/:lat/:lon', function(req, res){
+    var lat = req.params.lat
+      , lon = req.params.lon;
+    gtfs.getAgenciesByDistance(lat, lon, function(e, agencies) {
+      // for each agency, get the data
+      if (!agencies) return res.send({error: 'No agencies within default radius'});
+
+      var addRoutes = function(agency, callback) {
+        gtfs.getRoutesByAgency(agency.agency_key, function(e, data) {
+          var combined = agency.toJSON();
+          combined.routes = data;
+          callback(null, combined);
+        });
+      }
+
+      async.map(agencies, addRoutes, function(err, results) {
+        res.send( results || {error: 'No agencies within default radius'} );
+      });
     });
   });
 
