@@ -82,6 +82,14 @@ module.exports = function routes(app){
     });
   });
 
+
+  app.get('/api/transitjson/:agency', function(req, res){
+    var agency_key = req.params.agency
+    gtfs.getTransitJSON(agency_key, function(e, data){
+      res.send( data || {error: 'Unable to generate transit.'});
+    });
+  });
+
   //Routelist
   app.get('/api/routes/:agency', function(req, res){
     var agency_key = req.params.agency;
