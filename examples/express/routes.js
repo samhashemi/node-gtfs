@@ -77,8 +77,8 @@ module.exports = function routes(app){
 
   // Flips the latlngs of a multipolyline
   function flipMultiPolyline(polyline) {
-     return _.map(polyline, function(line) {
-       return _.map(line, function(latlng) {
+     return polyline.map(function(line) {
+       return line.map(function(latlng) {
          return [latlng[1], latlng[0]];
        });
      });
@@ -96,6 +96,7 @@ module.exports = function routes(app){
     var agency_key = req.params.agency
       , route_id = req.params.route_id
     gtfs.getCoordinatesByRoute(agency_key, route_id, function(e, data){
+      data = flipMultiPolyline(data);
       res.send( data || {error: 'No shapes for agency/route combination.'});
     });
   });
