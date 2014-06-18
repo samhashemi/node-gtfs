@@ -70,13 +70,14 @@ module.exports = function routes(app){
         line.map_id = line.agency_key;
         line.name = line.route_short_name + ' ' + line.route_long_name;
         line.name = toTitleCase(line.name);
+        line.sort_name = parseInt(line.route_short_name, 10);
         return line;
       });
 
       agency.lines.sort(function compare(a,b) {
-        if (a.route_short_name < b.route_short_name)
+        if (a.sort_name < b.sort_name)
            return -1;
-        if (a.route_short_name > b.route_short_name)
+        if (a.sort_name > b.sort_name)
           return 1;
         return 0;
       });
