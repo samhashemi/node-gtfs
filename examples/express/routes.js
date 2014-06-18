@@ -67,6 +67,7 @@ module.exports = function routes(app){
       agency.lines = agency.lines.map(function(line) {
         line = line.toJSON();
         line.id = line.route_id;
+        line.mapId = line.agency_key;
         line.name = line.route_short_name + ' ' + line.route_long_name;
         return line;
       });
