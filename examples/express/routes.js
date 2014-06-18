@@ -72,6 +72,14 @@ module.exports = function routes(app){
         line.name = toTitleCase(line.name);
         return line;
       });
+
+      agency.lines.sort(function compare(a,b) {
+        if (a.route_short_name < b.route_short_name)
+           return -1;
+        if (a.route_short_name > b.route_short_name)
+          return 1;
+        return 0;
+      });
     });
   }
 
