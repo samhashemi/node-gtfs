@@ -102,6 +102,8 @@ module.exports = function routes(app){
 
   function longestLine(multipolyline) {
     var longest = multipolyline[0];
+    if (multipolyline.length === 1) return longest;
+    
     for (var i = 1; i < multipolyline.length; i++) {
       if (multipolyline[i].length > longest.length) longest = multipolyline[i];
     }
