@@ -96,6 +96,7 @@ module.exports = function routes(app){
     for (var i = 1; i < multipolyline.length; i++) {
       if (multipolyline[i].length > longest.length) longest = multipolyline[i];
     }
+    return longest;
   }
 
   function chunk(items, size) {
@@ -121,7 +122,7 @@ module.exports = function routes(app){
       data = longestLine(data);
       data = chunk(data, 10);
       data = [data];
-      
+
       res.send( data || {error: 'No shapes for agency/route combination.'});
     });
   });
