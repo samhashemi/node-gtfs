@@ -91,6 +91,25 @@ module.exports = function routes(app){
      });
    }
 
+  function longestLine(multipolyline) {
+    var longest = multipolyline[0];
+    for (var i = 1; i < multipolyline.length; i++) {
+      if (multipolyline[i].length > longest.length) longest = multipolyline[i];
+    }
+  }
+
+  function chunk(items, size) {
+    var chunks = [];
+
+    for (var i = 0; i < items.length; i += size) {
+      var start = i;
+      if (i !== 0) start = i - 1;
+      chunks.push(items.slice(start, i + size));
+    }
+
+    return chunks;
+  }
+
   // Coordinates
   app.get('/api/coordinates/:agency/:route_id', function(req, res){
     var agency_key = req.params.agency
@@ -99,7 +118,9 @@ module.exports = function routes(app){
       data = flipMultiPolyline(data);
 
       // only return the first piece of the multipolyline, until we can handle inbound/outbound
-      data = [data[0]];
+      data = longestLine(data);
+      data = chunk(data, 10);
+      data = [data];
       
       res.send( data || {error: 'No shapes for agency/route combination.'});
     });
