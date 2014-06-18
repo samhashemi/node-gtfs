@@ -121,7 +121,6 @@ module.exports = function routes(app){
       // only return the first piece of the multipolyline, until we can handle inbound/outbound
       data = longestLine(data);
       data = chunk(data, 10);
-      data = [data];
 
       res.send( data || {error: 'No shapes for agency/route combination.'});
     });
