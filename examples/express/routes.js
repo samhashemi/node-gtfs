@@ -97,6 +97,10 @@ module.exports = function routes(app){
       , route_id = req.params.route_id
     gtfs.getCoordinatesByRoute(agency_key, route_id, function(e, data){
       data = flipMultiPolyline(data);
+
+      // only return the first piece of the multipolyline, until we can handle inbound/outbound
+      data = [data[0]];
+      
       res.send( data || {error: 'No shapes for agency/route combination.'});
     });
   });
