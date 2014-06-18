@@ -67,12 +67,29 @@ module.exports = function routes(app){
       agency.lines = agency.lines.map(function(line) {
         line = line.toJSON();
         line.id = line.route_id;
-        line.mapId = line.agency_key;
+        line.map_id = line.agency_key;
         line.name = line.route_short_name + ' ' + line.route_long_name;
+        line.name = toTitleCase(line.name);
         return line;
       });
     });
   }
+
+  // Flips the latlngs of a multipolyline
+  function flipMultiPolyline(polyline) {
+     return _.map(polyline, function(line) {
+       return _.map(line, function(latlng) {
+         return [latlng[1], latlng[0]];
+       });
+     });
+   }
+   
+  function toTitleCase(str) {
+     // https://stackoverflow.com/questions/4878756/
+     return str.replace(/\w\S*/g, function(txt) {
+       return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+     });
+   }
 
   // Coordinates
   app.get('/api/coordinates/:agency/:route_id', function(req, res){
