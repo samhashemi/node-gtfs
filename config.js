@@ -12,13 +12,13 @@ module.exports = {
     // , 'golden-gate-ferry'
     'san-francisco-municipal-transportation-agency',
     'ac-transit',
-    'la-metro',
+    // 'la-metro',
     'city-of-seattle',
-    'wmata',
+    // 'wmata',
     'metropolitan-atlanta-rapid-transit-authority',
-    'mta-bus-company',
-    'carta',
-    'massachusetts-bay-transportation-authority',
-    'detroit-department-of-transportation',
+    // 'mta-bus-company',
+    // 'carta',
+    // 'massachusetts-bay-transportation-authority',
+    // 'detroit-department-of-transportation',
     ]
 }
