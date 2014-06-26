@@ -7,19 +7,12 @@ module.exports = {
     // 'ac-transit',
     // 'city-of-seattle',
     // 'metropolitan-atlanta-rapid-transit-authority',
-    { agency_key: 'norta', url: 'http://samhashemi.com/20140629G.clean.zip'}
-    // 'la-metro',
-    // 'wmata',
-    // 'mta-bus-company',
-    // 'carta',
-    // 'massachusetts-bay-transportation-authority',
-    // 'detroit-department-of-transportation',
-    //   'alamedaoakland-ferry'
-    // , { agency_key: 'caltrain', url: 'http://www.gtfs-data-exchange.com/agency/caltrain/latest.zip'}
-    // , 'ac-transit'
-    // , 'county-connection'
-    // , 'san-francisco-municipal-transportation-agency'
-    // , 'bay-area-rapid-transit'
-    // , 'golden-gate-ferry'
+    // { agency_key: 'norta', url: 'http://samhashemi.com/20140629G.clean.zip'}
+    // 'chapel-hill-transit',
+    // 'triangle-transit',
+    // 'durham-area-transit-authority',
+    // 'capital-area-transit',
+    // 'cary-transit',
+    'city-of-madison',
     ]
 };
