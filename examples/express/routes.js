@@ -127,6 +127,10 @@ module.exports = function routes(app){
     var agency_key = req.params.agency
       , route_id = req.params.route_id
     gtfs.getCoordinatesByRoute(agency_key, route_id, function(e, data){
+      if (data.length === 0) {
+        return res.send([]);
+      }
+      
       data = flipMultiPolyline(data);
 
       // only return the first piece of the multipolyline, until we can handle inbound/outbound
