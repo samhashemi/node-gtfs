@@ -16,6 +16,7 @@ module.exports = {
     // 'city-of-madison',
     // 'capital-area-transit',
     // 'regional-transportation-district',
-    'mountain-line',
+    // 'mountain-line',
+    'auckland-transport',
     ]
 };
