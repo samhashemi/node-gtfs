@@ -17,6 +17,9 @@ module.exports = {
     // 'capital-area-transit',
     // 'regional-transportation-district',
     // 'mountain-line',
-    'auckland-transport',
+    // 'auckland-transport',
+    // 'lextran',
+    // { agency_key: 'people-move', url: 'http://gtfs.muni.org/People_Mover.gtfs.zip' }
+    'sacramento-regional-transit',
     ]
 };
