@@ -137,7 +137,7 @@ module.exports = function routes(app){
       // only return the first piece of the multipolyline, until we can handle inbound/outbound
       data = longestLine(data);
 
-      data = simplify(data, .000001, false);
+      if (data.length > 200) data = simplify(data, .00001, false);
 
       data = chunk(data, 10);
 
