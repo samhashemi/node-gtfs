@@ -1,5 +1,6 @@
 var gtfs = require('../../');
 var async = require('async');
+var simplify = require('../../simplify.js');
 
 module.exports = function routes(app){
   // Enable CORS
@@ -135,7 +136,14 @@ module.exports = function routes(app){
 
       // only return the first piece of the multipolyline, until we can handle inbound/outbound
       data = longestLine(data);
+
+      data = simplify(data, .000001, false);
+
       data = chunk(data, 10);
+
+      var firstPointPolyline = [data[0][0]];
+      data.unshift(firstPointPolyline);
+
 
       res.send( data || {error: 'No shapes for agency/route combination.'});
     });
