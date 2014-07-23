@@ -20,6 +20,7 @@ module.exports = {
     // 'auckland-transport',
     // 'lextran',
     // { agency_key: 'people-move', url: 'http://gtfs.muni.org/People_Mover.gtfs.zip' }
-    'sacramento-regional-transit',
+    //'sacramento-regional-transit',
+    { agency_key: 'carta', url: 'http://carta-gtfs.herokuapp.com/' }
     ]
 };
