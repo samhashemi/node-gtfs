@@ -137,9 +137,9 @@ module.exports = function routes(app){
       // only return the first piece of the multipolyline, until we can handle inbound/outbound
       data = longestLine(data);
 
-      if (data.length > 200) data = simplify(data, .00001, false);
+      data = simplify(data, 0.0001, false);
 
-      data = chunk(data, 10);
+      data = chunk(data, 3);
 
       var firstPointPolyline = [data[0][0]];
       data.unshift(firstPointPolyline);
