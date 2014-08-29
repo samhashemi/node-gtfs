@@ -22,6 +22,8 @@ module.exports = {
     // { agency_key: 'people-move', url: 'http://gtfs.muni.org/People_Mover.gtfs.zip' }
     //'sacramento-regional-transit',
     // { agency_key: 'carta', url: 'http://carta-gtfs.herokuapp.com/' }
-    'indygo',
+    // 'indygo',
+    // { agency_key: 'PhilTransit', url: 'http://www.dotc.gov.ph/images/stories/front/PhilTransit/gtfs_884416.zip'}
+    { agency_key: 'haiphong', url: 'https://www.dropbox.com/s/nxcbaiido3r4u9k/haiphong%20gtfs.zip?dl=1'}
     ]
 };
