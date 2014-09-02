@@ -23,7 +23,8 @@ module.exports = {
     //'sacramento-regional-transit',
     // { agency_key: 'carta', url: 'http://carta-gtfs.herokuapp.com/' }
     // 'indygo',
-    // { agency_key: 'PhilTransit', url: 'http://www.dotc.gov.ph/images/stories/front/PhilTransit/gtfs_884416.zip'}
-    { agency_key: 'haiphong', url: 'https://www.dropbox.com/s/nxcbaiido3r4u9k/haiphong%20gtfs.zip?dl=1'}
+    // { agency_key: 't2estinffdgfdeefe', url: 'https://www.dropbox.com/s/tw4vkrw82vd6dpv/Compressed%20file.zip?dl=1'}
+    // { agency_key: 'haiphong', url: 'https://www.dropbox.com/s/nxcbaiido3r4u9k/haiphong%20gtfs.zip?dl=1'}
+    { agency_key: 'thisisatest', url: 'https://www.dropbox.com/s/tefg5wfg187uq1f/try3.zip?dl=1' }
     ]
 };

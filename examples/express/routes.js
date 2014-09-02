@@ -127,7 +127,12 @@ module.exports = function routes(app){
   app.get('/api/coordinates/:agency/:route_id', function(req, res){
     var agency_key = req.params.agency
       , route_id = req.params.route_id
-    gtfs.getCoordinatesByRoute(agency_key, route_id, function(e, data){
+    gtfs.getCoordinatesByRoute(agency_key, route_id, function(err, data) {
+      if (err && err.usedStops) {
+        var flipped = flipMultiPolyline(data)
+        return res.send(flipped);
+      }
+
       if (data.length === 0) {
         return res.send([]);
       }

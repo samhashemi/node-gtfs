@@ -156,8 +156,12 @@ Db.connect(config.mongo_url, {w: 1}, function(err, db) {
         if(response && response.statusCode != 200){ cb(new Error('Couldn\'t download files')); }
         console.log(agency_key + ': Download successful');
   	
+        console.log('Starting unzipping process');
         fs.createReadStream(downloadDir + '/latest.zip')
-          .pipe(unzip.Extract({ path: downloadDir }).on('close', cb))
+          .pipe(unzip.Extract({ path: downloadDir }).on('close', function() {
+            console.log('Finished unzipping! Its not our fault');
+            cb();
+          }))
           .on('error', handleError);
       }
     }
