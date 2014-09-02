@@ -129,8 +129,14 @@ module.exports = function routes(app){
       , route_id = req.params.route_id
     gtfs.getCoordinatesByRoute(agency_key, route_id, function(err, data) {
       if (err && err.usedStops) {
-        var flipped = flipMultiPolyline(data)
-        return res.send(flipped);
+        var points = data[0];
+        var pattern = [[points[0]]];
+
+        for (var i = 0; i < points.length - 1; i++) {
+          pattern.push([points[i], points[i+1]]);
+        }
+
+        return res.send(pattern);
       }
 
       if (data.length === 0) {
