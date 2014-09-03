@@ -26,7 +26,7 @@ module.exports = {
     // { agency_key: 't2estinffdgfdeefe', url: 'https://www.dropbox.com/s/tw4vkrw82vd6dpv/Compressed%20file.zip?dl=1'}
     // { agency_key: 'haiphong', url: 'https://www.dropbox.com/s/nxcbaiido3r4u9k/haiphong%20gtfs.zip?dl=1'}
     // { agency_key: 'thisisatest', url: 'https://www.dropbox.com/s/tefg5wfg187uq1f/try3.zip?dl=1' },
-    // { agency_key: 'zhengzhou', url: 'https://www.dropbox.com/s/tgpvenjeqt2vbyw/zhengzhou.zip?dl=1' }
-    { agency_key: 'haiphong', url: 'https://www.dropbox.com/s/rvowpa1v7vvlas9/haiphong.zip?dl=1' }
+    { agency_key: 'zhengzhou', url: 'https://www.dropbox.com/s/tgpvenjeqt2vbyw/zhengzhou.zip?dl=1' }
+    // { agency_key: 'haiphong', url: 'https://www.dropbox.com/s/rvowpa1v7vvlas9/haiphong.zip?dl=1' }
     ]
 };
